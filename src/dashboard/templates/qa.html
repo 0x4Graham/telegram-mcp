@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% set active_page = 'qa' %}
+
+{% block title %}Q&A Pairs - Telegram Digest{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Knowledge Base ({{ pairs|length }} Q&A pairs)</h2>
+    <div id="qa-list" hx-get="/qa/list" hx-trigger="every 60s" hx-swap="innerHTML">
+        {% include "partials/qa_list.html" %}
+    </div>
+</div>
+{% endblock %}

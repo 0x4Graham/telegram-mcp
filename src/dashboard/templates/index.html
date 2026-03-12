@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% set active_page = 'home' %}
+
+{% block title %}Dashboard - Telegram Digest{% endblock %}
+
+{% block content %}
+<div id="stats-container" hx-get="/stats" hx-trigger="every 30s" hx-swap="innerHTML">
+    {% include "partials/stats.html" %}
+</div>
+
+<div class="card">
+    <h2>Scheduled Jobs</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Job</th>
+                <th>Next Run</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for job in jobs %}
+            <tr>
+                <td>{{ job.name }}</td>
+                <td class="time-ago">{{ job.next_run or 'Not scheduled' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

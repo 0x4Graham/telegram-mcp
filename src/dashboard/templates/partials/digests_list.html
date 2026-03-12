@@ -1,0 +1,32 @@
+{% if digests %}
+<table>
+    <thead>
+        <tr>
+            <th>Generated</th>
+            <th>Period</th>
+            <th>Messages</th>
+            <th>Chats</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for digest in digests %}
+        <tr>
+            <td class="time-ago">{{ digest.generated_at }}</td>
+            <td>{{ digest.period_start[:16] }} - {{ digest.period_end[:16] }}</td>
+            <td>{{ digest.message_count }}</td>
+            <td>{{ digest.chat_count }}</td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <details>
+                    <summary style="cursor: pointer; color: var(--text-muted);">View Content</summary>
+                    <div class="digest-content">{{ digest.content }}</div>
+                </details>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p style="color: var(--text-muted);">No digests generated yet.</p>
+{% endif %}

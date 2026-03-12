@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  telegram-digest:
+    build: .
+    container_name: telegram-digest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8000:8000"  # Dashboard (localhost only)
+    volumes:
+      # Persist data (database, session, vectors)
+      - ./data:/app/data
+      # Config file
+      - ./config.yaml:/app/config.yaml:ro
+    env_file:
+      - .env
+    environment:
+      - TZ=America/New_York  # Match your timezone
+      - DASHBOARD_HOST=0.0.0.0  # Bind inside container (port is localhost-only on host)
+      # - DASHBOARD_TOKEN=your-secret-token  # Uncomment to require auth
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 30s

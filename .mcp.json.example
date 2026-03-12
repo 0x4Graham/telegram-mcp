@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "tg-summary": {
+      "command": "/path/to/tg_summary_project/venv/bin/python",
+      "args": ["-m", "src.mcp_server"],
+      "cwd": "/path/to/tg_summary_project"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+telegram:
+  api_id: ${TELEGRAM_API_ID}
+  api_hash: ${TELEGRAM_API_HASH}
+  phone: "+1234567890"
+  bot_token: ${TELEGRAM_BOT_TOKEN}
+  delivery_chat_id: YOUR_TELEGRAM_USER_ID  # Get this by running get_user_id.py
+  username: your_username  # Your Telegram username (without @) for mention detection
+
+llm:
+  model: claude-sonnet-4-20250514
+
+embeddings:
+  model: all-MiniLM-L6-v2
+
+digest:
+  schedule: "07:00"
+  timezone: America/New_York
+  lookback_hours: 24
+  target_length: 2000
+
+quiet_hours:
+  enabled: true
+  start: "22:00"
+  end: "08:00"
+
+answer_suggester:
+  enabled: true
+  similarity_threshold: 0.85
+  cooldown_minutes: 30
+  suppress_while_typing: true
+  show_top_matches: 3
+
+question_detection:
+  batch_size: 50
+  max_wait_minutes: 10
+
+data_retention:
+  messages_days: 90
+  cleanup_schedule: "03:00"
+
+chats:
+  default_priority: 3
+  priorities: []
+  ignore_patterns:
+    - "*Alerts*"
+    - "*Bot*"
+    # Add chat names you want to ignore
+
+dashboard:
+  enabled: true
+  port: 8000

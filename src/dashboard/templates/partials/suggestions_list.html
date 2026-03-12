@@ -1,0 +1,26 @@
+{% if suggestions %}
+<table>
+    <thead>
+        <tr>
+            <th>Time</th>
+            <th>Target Chat</th>
+            <th>Source Chat</th>
+            <th>Similarity</th>
+            <th>Question</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for s in suggestions %}
+        <tr>
+            <td class="time-ago">{{ s.suggested_at }}</td>
+            <td>{{ s.target_chat_id }}</td>
+            <td>{{ s.source_chat }}</td>
+            <td>{{ "%.0f"|format(s.similarity_score * 100) }}%</td>
+            <td class="truncate" title="{{ s.question_text }}">{{ s.question_text[:50] }}...</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p style="color: var(--text-muted);">No suggestions sent yet.</p>
+{% endif %}

@@ -1,0 +1,39 @@
+<div class="card">
+    <h2>System Status</h2>
+    <div style="margin-bottom: 15px;">
+        {% if is_paused %}
+        <span class="status-badge status-paused">Paused</span>
+        {% elif is_quiet_hours %}
+        <span class="status-badge status-quiet">Quiet Hours</span>
+        {% else %}
+        <span class="status-badge status-running">Running</span>
+        {% endif %}
+        <span style="margin-left: 15px; color: var(--text-muted);">Uptime: {{ uptime }}</span>
+    </div>
+    <div class="stats-grid">
+        <div class="stat">
+            <div class="stat-value">{{ stats.total_messages }}</div>
+            <div class="stat-label">Total Messages</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">{{ stats.messages_today }}</div>
+            <div class="stat-label">Messages Today</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">{{ stats.total_chats }}</div>
+            <div class="stat-label">Chats Tracked</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">{{ qa_count }}</div>
+            <div class="stat-label">Q&A Pairs</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">{{ stats.total_suggestions }}</div>
+            <div class="stat-label">Suggestions Sent</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">{{ stats.total_digests }}</div>
+            <div class="stat-label">Digests Generated</div>
+        </div>
+    </div>
+</div>

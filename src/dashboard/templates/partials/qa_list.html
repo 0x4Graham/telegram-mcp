@@ -1,0 +1,22 @@
+{% if pairs %}
+<table>
+    <thead>
+        <tr>
+            <th>Chat</th>
+            <th>Question</th>
+            <th>Answer</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in pairs %}
+        <tr>
+            <td style="white-space: nowrap;">{{ p.chat_name }}</td>
+            <td title="{{ p.question }}">{{ p.question[:120] }}{% if p.question|length > 120 %}...{% endif %}</td>
+            <td title="{{ p.answer }}">{{ p.answer[:200] }}{% if p.answer|length > 200 %}...{% endif %}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p style="color: var(--text-muted);">No Q&A pairs in the knowledge base yet.</p>
+{% endif %}
